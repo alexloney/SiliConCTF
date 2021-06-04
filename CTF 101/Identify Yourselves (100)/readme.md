@@ -78,4 +78,33 @@ Active UNIX domain sockets (servers and established)
 Proto RefCnt Flags       Type       State         I-Node PID/Program name    Path
 ```
 
-What I had to do to solve this one was create a self-signed x509 certificate and curl the ports.
+If you then curl https://localhost, it will inform you that you must provide a certificate.
+Then if you figure out how to do that, it will inform you that it expected a specific
+signer for the certificate.
+
+```
+$ openssl genrsa -out root.key
+$ openssl req -x509 -new -nodes -key root.key -sha256 -days 365 -out cert.pem
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [AU]:US
+State or Province Name (full name) [Some-State]:California
+Locality Name (eg, city) []:Folsom
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:Silicon CTF
+Organizational Unit Name (eg, section) []:Auth CA
+Common Name (e.g. server FQDN or YOUR name) []:
+Email Address []:
+$ curl -k --key root.key --cert cert.pem https://localhost
+Welcome, OU=Auth CA,O=Silicon CTF,L=Folsom,ST=California,C=US.  Your flag: silicon{D0_0r_DO_NoT_thER3_I5_No_TRY}f827
+```
+
+And we have the flag
+
+```
+silicon{D0_0r_DO_NoT_thER3_I5_No_TRY}
+```
