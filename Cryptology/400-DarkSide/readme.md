@@ -45,3 +45,5 @@ Which successfully decrypted the files!
 ```
 silicon{the_Empire_Needs_Better_Key_Management}
 ```
+
+As a final note, since I was able to decrypt this with just `Salsa20`, I do not know how the RSA key interacts with this. I did play around with the final ZIP that was provided, but I was unable to decyrpt anything useful from the key blob. From researching DarkSide, it appears as though they use a custom RSA implementation, so it may require recreating that in order to actually decrypt with.
