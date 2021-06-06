@@ -72,7 +72,7 @@ This `super_secret_plans_message.html` seems interesting, lets check it out! htt
 
 ## Morse Code
 On the `super_secret_plans_message.html` page, there's an audio file that plays with what sounds like
-morse code, throwing it into a .mp3 file and uploading it to a website (like this)[https://morsecode.world/international/decoder/audio-decoder-adaptive.html]
+morse code, throwing it into a .mp3 file and uploading it to a website [like this](https://morsecode.world/international/decoder/audio-decoder-adaptive.html)
 that can decode morse code gives us a URL:
 
 https://c3p.xyz
@@ -82,9 +82,7 @@ The c3p.xyz website contains a password-protected .zip and a wordlist file, down
 `frackzip` gives us the password:
 
 ```bash
-$ fcrackzip -u -D -p wordlist.txt documents.zip                                                                                1 ⚙
-
-
+$ fcrackzip -u -D -p wordlist.txt documents.zip
 PASSWORD FOUND!!!!: pw == itacolita
 ```
 
