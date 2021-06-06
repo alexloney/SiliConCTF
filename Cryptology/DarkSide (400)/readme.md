@@ -14,11 +14,11 @@
 
 What made this one difficult was that the input files provided were somewhat incorrect. However I ended up solving it by using the incorrect files and not the final fixed files, but it took a while.
 
-The description is that it is encrypted with the DarkSide ransomware, and upon researching the DarkSide ransomware, it turns out that it uses a `Salsa20` encryption with a randomly generated key that is then encrypted using `RSA`. The first two sets of files they gave had a 32-byte key and I wasted a lot of time trying to figure out how to "decrypt" this data. It turns out that the key they gave is actually the `Salsa20` key.
+The description is that it is encrypted with the DarkSide ransomware, and upon researching the DarkSide ransomware, it turns out that it uses a `Salsa20` encryption with a randomly generated key that is then encrypted using `RSA`. The first two sets of files they gave had a 32-byte key and I wasted a lot of time trying to figure out how to "decrypt" this data with RSA. It turns out that the key they gave is actually the `Salsa20` key.
 
 The problem though is that `Salsa20` also calls for a nonce.
 
-It turns out that this is a "mixture of WannaCry and DarkSide" and that the RSA private key "may not be needed". With that information I ended up trying to decrypt using a nonce of `\x00\x00\x00\x00` (since WannaCry uses a NULL IV), and that worked!
+It turns out that this is a "mixture of WannaCry and DarkSide" and that the RSA private key "may not be needed". With that information I ended up trying to decrypt using a nonce of `\x00\x00\x00\x00\x00\x00\x00\x00` (since WannaCry uses a NULL IV), and that worked!
 
 Here's the full code for how I decrypted the data
 
